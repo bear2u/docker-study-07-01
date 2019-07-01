@@ -1,10 +1,2 @@
-docker run 
--d 
---name wordpress 
--v wordpress:/var/www/html //docker volume
--v ./plugin:/var/www/html/wp-content/plugins //local resouces
---link mysql:mysql 
--e WORDPRESS_DB_HOST=mysql:3306 
--e WORDPRESS_DB_PASSWORD=wordpress 
--p 80:80 
-wordpress:latest
+docker build -t test:v2 -f Dockerfile.dev .
+docker run -it -p 3000:3000 -v $PWD:/app -v /app/node_modules test:v1
