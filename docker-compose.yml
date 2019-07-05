@@ -15,4 +15,14 @@ services:
     links:
       - node-app  
     depends_on:
-      - node-app     
+      - node-app   
+  app-mongo:
+    image: mongo
+    volumes:
+      - data:/data/db
+    ports:
+      - "27017:27017"
+      
+volumes:
+  data:
+    driver: local      
