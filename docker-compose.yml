@@ -4,6 +4,8 @@ services:
     restart: always
     build:
       context: ./server
+    links:
+      - app-mongo  
     # ports:
     #   - "3000:3000"
   nginx:
@@ -22,7 +24,7 @@ services:
       - data:/data/db
     ports:
       - "27017:27017"
-      
+
 volumes:
   data:
     driver: local      

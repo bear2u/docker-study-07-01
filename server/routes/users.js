@@ -9,6 +9,11 @@ router.get('/', function(req, res, next) {
     .then( users => {
       res.json(users);
     })  
+
+  // var user = new User();
+  // user.name = 'ok';
+  // User.create(user)
+  //   .then(user => res.json(user));
 });
 
 module.exports = router;
