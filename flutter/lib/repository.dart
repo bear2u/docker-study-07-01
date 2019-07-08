@@ -1,3 +1,4 @@
+import 'api.dart';
 import 'item.dart';
 
 class Repository {
@@ -12,11 +13,4 @@ class Repository {
 
 abstract class Source {
   addItem(Item item);
-}
-
-class Api implements Source {
-  @override
-  addItem(Item item) {    
-    return null;
-  }
 }
