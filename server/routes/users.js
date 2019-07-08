@@ -12,9 +12,7 @@ router.get('/', function(req, res, next) {
     .then(user => User.find({})
     .then( users => {
       res.json(users);
-    }))  
-
-  
+    }))    
 });
 
 module.exports = router;
