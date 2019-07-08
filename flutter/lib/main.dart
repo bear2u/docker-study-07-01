@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'item.dart';
 
-void main() => runApp(
-  Provider(
-    child: MyApp(),
-  )
-);
+void main() => runApp(Provider(
+      child: MyApp(),
+    ));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -15,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(        
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -40,6 +38,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final bloc = Provider.of(context).bloc;
 
+    addItem() {
+      final item =
+          Item(title: _titleController.text, content: _bodyController.text);
+
+      bloc.add(item);
+    }
+
+    ;
     return Scaffold(
       appBar: AppBar(
         title: Text('투두리스트'),
@@ -49,27 +55,24 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             TextField(
-              controller: _titleController,
+              controller: _titleController,                            
             ),
             TextField(
-              controller: _bodyController,
+              controller: _bodyController,              
+            ),
+            StreamBuilder(
+              stream: bloc.value,
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                final value = snapshot.data ?? "";
+                return Text(value);
+              },
             ),
             RaisedButton(
               child: Text('등록'),
               onPressed: () {
                 // TODO 클릭시 타이틀과 내용을 스트림으로 던저줍니다.
                 // 타이틀과 내용을 서버로 저장
-                final item = Item(
-                  title: _titleController.text, 
-                  content: _bodyController.text
-                );
-
-                // item
-                //   ..title = ""
-                //   ..content = "";
-
-                bloc.add(item);
-                
+                addItem();
               },
             )
           ],
@@ -77,5 +80,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-  
 }
