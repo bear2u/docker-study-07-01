@@ -10,16 +10,25 @@ class Api implements Source {
   final client = http.Client();
 
   @override
-  addItem(Item item) async {    
+  Future<List<User>> addItem(Item item) async {    
     var url = base_url + '/users';
     try {
       var response = await client.get(url);
       // print(response.body);
 
-      String body = '{ "name":"kim" }';//response.body;
-      Map<String, dynamic> userMap = jsonDecode(body);
-      User user = User.fromJson(userMap);
-      print(user);
+      String body = response.body;
+      print('1111');
+      List<dynamic> users = jsonDecode(body);
+      print('2222');
+      // User user = User.fromJson(userMap);
+      List<User> result = users.map((user){ 
+          User ur = User.fromJson(user);          
+          return ur;
+        }
+      ).toList();
+      print(result);
+
+      return result;
 
     } catch(e) {
       print(e);

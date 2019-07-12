@@ -1,3 +1,5 @@
+import 'package:docker_api_sample/user.dart';
+
 import 'api.dart';
 import 'item.dart';
 
@@ -6,11 +8,11 @@ class Repository {
     new Api()
   ];
 
-  Future addItem(Item item) {
+  Future<List<User>> addItem(Item item) {
     return sources[0].addItem(item);
   }
 }
 
 abstract class Source {
-  addItem(Item item);
+  Future<List<User>> addItem(Item item);
 }
