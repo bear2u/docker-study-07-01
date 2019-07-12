@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:docker_api_sample/repository.dart';
 import 'package:docker_api_sample/user.dart';
+import 'package:http/http.dart';
 import 'item.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,20 +14,19 @@ class Api implements Source {
   Future<List<User>> addItem(Item item) async {    
     var url = base_url + '/users';
     try {
-      var response = await client.get(url);
+      Response response = await client.get(url);
       // print(response.body);
 
+      if(response.statusCode == 500) {
+        throw Exception('500 error');
+      }
+
       String body = response.body;
-      print('1111');
+      
       List<dynamic> users = jsonDecode(body);
-      print('2222');
+      
       // User user = User.fromJson(userMap);
-      List<User> result = users.map((user){ 
-          User ur = User.fromJson(user);          
-          return ur;
-        }
-      ).toList();
-      print(result);
+      List<User> result = users.map((user) => User.fromJson(user)).toList();
 
       return result;
 

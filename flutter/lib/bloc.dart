@@ -1,4 +1,5 @@
 import 'package:docker_api_sample/repository.dart';
+import 'package:docker_api_sample/user.dart';
 
 import 'item.dart';
 import 'package:rxdart/rxdart.dart';
@@ -34,7 +35,8 @@ class Bloc {
     // print('$item');
     // _addItem.sink.add(item);
 
-    await repository.addItem(item);
+    List<User> users = await repository.addItem(item);
+    print('users > $users');
   }
 
   dispose() {
