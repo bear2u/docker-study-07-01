@@ -10,6 +10,7 @@ class Bloc {
 
   // Input
   final _addItem = PublishSubject<Item>();  
+  final _users = PublishSubject<List<User>>();
 
   //Input
   // title
@@ -24,6 +25,7 @@ class Bloc {
   get title => _title.stream;
   get content => _content.stream;
   get value => _value.stream;
+  get users => _users.stream;
 
   // TODO title, content => value
 
@@ -37,6 +39,7 @@ class Bloc {
 
     List<User> users = await repository.addItem(item);
     print('users > $users');
+    _users.sink.add(users);
   }
 
   dispose() {
@@ -44,5 +47,6 @@ class Bloc {
     _title.close();
     _content.close();
     _value.close();
+    _users.close();
   }
 }

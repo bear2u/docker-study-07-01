@@ -1,4 +1,5 @@
 import 'package:docker_api_sample/provider.dart';
+import 'package:docker_api_sample/user.dart';
 import 'package:flutter/material.dart';
 
 import 'item.dart';
@@ -74,6 +75,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 // 타이틀과 내용을 서버로 저장
                 addItem();
               },
+            ),
+            Container(
+              height: 300,
+              child: StreamBuilder(
+                stream: bloc.users,
+                builder: (context, AsyncSnapshot<List<User>> snapshot) {
+                  final users = snapshot.data ?? [];
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: users.length,
+                    itemBuilder: (context, index) => Text(users[index].name),
+                  );
+                },
+              ),
             )
           ],
         ),
