@@ -9,7 +9,7 @@ class Bloc {
   final repository = Repository();
 
   // Input
-  final _addItem = PublishSubject<Item>();  
+  final _addUser = PublishSubject<User>();  
   final _users = PublishSubject<List<User>>();
 
   //Input
@@ -21,7 +21,7 @@ class Bloc {
   final _value = PublishSubject<String>();
 
   // Output
-  get addItem => _addItem.stream;
+  get addItem => _addUser.stream;
   get title => _title.stream;
   get content => _content.stream;
   get value => _value.stream;
@@ -33,17 +33,17 @@ class Bloc {
     Observable.combineLatest2(title, content, (a, b) => _value.sink.add('<$a,$b>'));
   }
 
-  add(Item item) async {
+  add(User user) async {
     // print('$item');
     // _addItem.sink.add(item);
 
-    List<User> users = await repository.addItem(item);
+    List<User> users = await repository.addUser(user);
     print('users > $users');
     _users.sink.add(users);
   }
 
   dispose() {
-    _addItem.close();
+    _addUser.close();
     _title.close();
     _content.close();
     _value.close();

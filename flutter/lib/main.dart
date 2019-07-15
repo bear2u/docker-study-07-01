@@ -39,11 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final bloc = Provider.of(context).bloc;
 
-    addItem() {
-      final item =
-          Item(title: _titleController.text, content: _bodyController.text);
+    addUser() {
+      final user = User(id: _titleController.text, password: _bodyController.text);
 
-      bloc.add(item);
+      bloc.add(user);
     }
 
     ;
@@ -73,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 // TODO 클릭시 타이틀과 내용을 스트림으로 던저줍니다.
                 // 타이틀과 내용을 서버로 저장
-                addItem();
+                addUser();
               },
             ),
             Container(

@@ -1,19 +1,21 @@
 class User {
-  String name;
+  String id;
+  String password;
 
-  User({this.name});
+  User({this.id, this.password});
 
   User.fromJson(Map<String, dynamic> json)
-      : name = json['name'];
+      : id = json['id'],
+        password = json['password'];
 
   Map<String, dynamic> toJson() =>
     {
-      'name': name
+      'id': id,
+      'password': password
     };
 
   @override
   String toString() {
-    // TODO: implement toString
-    return "User class => name:$name";
+    return "User class => name:$id, $password";
   }
 }

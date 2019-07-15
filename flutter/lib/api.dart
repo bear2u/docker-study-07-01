@@ -11,7 +11,7 @@ class Api implements Source {
   final client = http.Client();
 
   @override
-  Future<List<User>> addItem(Item item) async {    
+  Future<List<User>> addUser(User user) async {    
     var url = base_url + '/users';
 
     try {
