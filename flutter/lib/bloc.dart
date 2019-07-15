@@ -34,12 +34,9 @@ class Bloc {
   }
 
   add(User user) async {
-    // print('$item');
-    // _addItem.sink.add(item);
 
-    List<User> users = await repository.addUser(user);
-    print('users > $users');
-    _users.sink.add(users);
+    User ur = await repository.addUser(user);
+    print('user => $ur');    
   }
 
   dispose() {

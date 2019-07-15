@@ -11,11 +11,11 @@ class Api implements Source {
   final client = http.Client();
 
   @override
-  Future<List<User>> addUser(User user) async {    
+  Future<User> addUser(User user) async {    
     var url = base_url + '/users';
 
-    try {
-      Response response = await client.get(url);
+    try {      
+      Response response = await client.post(url, body: user.toJson());
       // print(response.body);
 
       if(response.statusCode == 500) {
@@ -23,13 +23,15 @@ class Api implements Source {
       }
 
       String body = response.body;
-      
-      List<dynamic> users = jsonDecode(body);
-      
-      // User user = User.fromJson(userMap);
-      List<User> result = users.map((user) => User.fromJson(user)).toList();
 
-      return result;
+      Map<String, dynamic> map = jsonDecode(body);
+
+      // List<dynamic> users = jsonDecode(body);
+      
+      // // User user = User.fromJson(userMap);
+      // List<User> result = users.map((user) => User.fromJson(user)).toList();
+
+      return User.fromJson(map);
 
     } catch(e) {
       print(e);

@@ -45,7 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
       bloc.add(user);
     }
 
-    ;
     return Scaffold(
       appBar: AppBar(
         title: Text('회원가입'),
@@ -84,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   return ListView.builder(
                     shrinkWrap: true,
                     itemCount: users.length,
-                    itemBuilder: (context, index) => Text(users[index].name),
+                    itemBuilder: (context, index) => Text(users[index].id),
                   );
                 },
               ),

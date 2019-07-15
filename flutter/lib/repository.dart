@@ -7,11 +7,11 @@ class Repository {
     new Api()
   ];
 
-  Future<List<User>> addUser(User user) {
+  Future<User> addUser(User user) {
     return sources[0].addUser(user);
   }
 }
 
 abstract class Source {
-  Future<List<User>> addUser(User item);
+  Future<User> addUser(User item);
 }
