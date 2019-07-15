@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ;
     return Scaffold(
       appBar: AppBar(
-        title: Text('투두리스트'),
+        title: Text('회원가입'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

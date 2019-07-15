@@ -7,12 +7,13 @@ import 'item.dart';
 import 'package:http/http.dart' as http;
 
 class Api implements Source {
-  final base_url = "http://dd7ac9cd.ngrok.io/api";
+  final base_url = "http://b455e96e.ngrok.io/api";
   final client = http.Client();
 
   @override
   Future<List<User>> addItem(Item item) async {    
     var url = base_url + '/users';
+
     try {
       Response response = await client.get(url);
       // print(response.body);

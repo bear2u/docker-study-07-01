@@ -5,7 +5,6 @@ var User = require('../models/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-
   var user = new User();
   user.name = 'ok';
   User.create(user)
@@ -14,5 +13,9 @@ router.get('/', function(req, res, next) {
       res.json(users);
     }))    
 });
+
+router.post('/', ({ body : { id, password} }, res, next) => {
+  res.json({ id, password });
+})
 
 module.exports = router;
